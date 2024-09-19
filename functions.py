@@ -20,14 +20,23 @@ class Service:
     def print_server_forklist(self):
         try:
             keys = self.server_forklists()
-            for key in keys:
-                print(key)
+            for index, key in enumerate(keys, start=1):
+                print(f"{index}. {key}")
+            self.input_server_forklist()
         except Exception as e:
             print(e)
 
     def input_server_forklist(self):
         try:
-            pass
+            while True:
+                try:
+                    self.selection = int(input("Select Server Fork: "))
+                    if 1 <= self.selection <= len(self.server_forklists()):
+                        break
+                    else:
+                        print(f"Please enter a number between 1 and {len(self.server_forklists())}.")
+                except ValueError:
+                    print(f"Invalid input. Please enter a number between 1 and {len(self.server_forklists())}.")
         except Exception as e:
             pass
 
