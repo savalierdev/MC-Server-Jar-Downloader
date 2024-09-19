@@ -4,9 +4,26 @@ from tkinter import filedialog
 
 file_name = "server.jar"
 
-class Service:
+class FileOperations:
     def __init__(self):
+        self.file_name = file_name
+        self.select_folder()
+
+    def select_folder(self):
+        root = tk.Tk()
+        root.withdraw()
+        folder_selected = filedialog.askdirectory()
+        print('Folder selected:', folder_selected)
+        return folder_selected
+    
+    def download_file(self,file_name):
         pass
+
+class Service:
+    def __init__(self, file:FileOperations):
+        self.file = file
+        self.print_server_forklist()
+        self.input_server_forklist()
 
     def server_forklists(self):
         try:
@@ -39,17 +56,3 @@ class Service:
                     print(f"Invalid input. Please enter a number between 1 and {len(self.server_forklists())}.")
         except Exception as e:
             pass
-
-class FileOperations:
-    def __init__(self):
-        self.file_name = file_name
-
-    def select_folder(self):
-        root = tk.Tk()
-        root.withdraw()
-        folder_selected = filedialog.askdirectory()
-        print('Folder selected:', folder_selected)
-        return folder_selected
-    
-    def download_file(self,file_name):
-        pass
